@@ -334,6 +334,37 @@ local function nodesFor(contMap)
 	return e
 end
 
+-- For Flights.lua: your faction's flight paths on one map (zone or continent),
+-- placed on that map, each with known = true or false for this character.
+function NV.TaxiNodesOn(mapID)
+	local out = {}
+	if not (mapID and C_TaxiMap and C_TaxiMap.GetTaxiNodesForMap) then return out end
+	local nodes = try(C_TaxiMap.GetTaxiNodesForMap, mapID)
+	if type(nodes) ~= "table" then return out end
+	local faction = UnitFactionGroup and str(try(UnitFactionGroup, "player"))
+	local known = db().taxiKnown
+	for _, n in ipairs(nodes) do
+		if type(n) == "table" and not flag(n.isMapLayerTransition) then
+			local id, name = num(n.nodeID), str(n.name)
+			local pos, x, y = n.position, nil, nil
+			if type(pos) == "table" then
+				x, y = num(pos.x), num(pos.y)
+				if not (x and y) and pos.GetXY then
+					x, y = try(pos.GetXY, pos)
+					x, y = num(x), num(y)
+				end
+			end
+			if id and x and y and factionOK(n, faction) then
+				out[#out + 1] = { nodeID = id, name = name or ("#" .. id), x = x, y = y, known = isKnown(n, id, name, known) }
+			end
+		end
+	end
+	return out
+end
+NV.TaxiNodes = function(contMap) return nodesFor(contMap) end
+NV.ContinentOf, NV.PlayerMap, NV.WorldDist = function(m) return continentOf(m) end, function() return playerMap() end, wdist
+NV.FLY_SPEED, NV.FLY_FACTOR = FLY_SPEED, FLY_FACTOR
+
 -- At a flight master: every node you can fly to (or stand at) is known.
 local function learnFromTaxiMap()
 	local known = db().taxiKnown
@@ -408,7 +439,10 @@ local function bestFlight(a, b, speed, key, nodes)
 		for _, t in ipairs(to) do
 			if f.node ~= t.node then
 				local flyDist = wdist(f.node, t.node) * FLY_FACTOR
-				local flyTime = flyDist / FLY_SPEED + FLY_OVERHEAD
+				-- a flight you took before: its measured time (Flights.lua)
+				local F = RoA.Flights
+				local learned = F and F.Time and F:Time(f.node.nodeID, t.node.nodeID, true)
+				local flyTime = (learned or flyDist / FLY_SPEED) + FLY_OVERHEAD
 				local total = f.d / speed + flyTime + t.d / speed
 				if not best or total < best.total then
 					best = { a = f.node, b = t.node, walkA = f.d, walkB = t.d, flyDist = flyDist, flyTime = flyTime, total = total }

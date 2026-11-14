@@ -623,6 +623,34 @@ add({
 	["Drag: make it bigger so more fits. Double-click: default size."] = "Slepen: groter maken zodat er meer in past. Dubbelklik: standaardgrootte.",
 })
 
+add({
+	["Flight paths"] = "Vliegroutes",
+	["Flight path helpers"] = "Hulp bij vliegroutes",
+	["The game gives no flight times: they are estimated from the distance and measured on every flight you take (for all your characters)."] = "Het spel geeft geen vliegtijden: ze worden geschat uit de afstand en gemeten bij elke vlucht die je neemt (voor al je karakters).",
+	["Times and prices at the flight master"] = "Tijden en prijzen bij de flight master",
+	["A list beside the flight map, fastest first. ~ = estimated."] = "Een lijst naast de vluchtkaart, snelste eerst. ~ = geschat.",
+	["Countdown to the landing"] = "Aftellen tot de landing",
+	["A bar while you fly. Unlock the frames (General) to move it."] = "Een balk terwijl je vliegt. Ontgrendel de kaders (Algemeen) om hem te verplaatsen.",
+	["Flight paths on the world map"] = "Vliegroutes op de wereldkaart",
+	["Green = you know it, grey = not yet. Hover: which of your characters know it. Click: add it to your route."] = "Groen = gekend, grijs = nog niet. Muis erop: welke karakters hem kennen. Klik: toevoegen aan je route.",
+	["Say when a zone has a new flight path"] = "Melden als een zone een nieuwe vliegroute heeft",
+	["One line in the chat, once per flight path."] = "Eén regel in de chat, één keer per vliegroute.",
+	["Flights from here"] = "Vluchten van hier",
+	["~ = estimated; flown once, the real time is kept."] = "~ = geschat; eens gevlogen, wordt de echte tijd onthouden.",
+	["Flight bar"] = "Vluchtbalk",
+	["unknown destination"] = "onbekende bestemming",
+	["%s: landing in %s"] = "%s: landing over %s",
+	["%s: landing soon"] = "%s: landing zo meteen",
+	["%s: in the air for %s"] = "%s: al %s in de lucht",
+	["A flight path you don't know yet is in this zone: %s. Click its grey pin on the world map to add it to your route."] = "In deze zone ligt een vliegroute die je nog niet kent: %s. Klik op het grijze icoon op de wereldkaart om hem aan je route toe te voegen.",
+	["You know this flight path."] = "Je kent deze vliegroute.",
+	["Not known yet: talk to its flight master."] = "Nog niet gekend: spreek de flight master aan.",
+	["Also known by: %s"] = "Ook gekend door: %s",
+	["Click: add to your route"] = "Klik: toevoegen aan je route",
+	["Flight path: %s"] = "Vliegroute: %s",
+	["Added to your route: %s"] = "Toegevoegd aan je route: %s",
+})
+
 -- Key bindings (Bindings.xml); names are read before saved settings load, so English
 BINDING_HEADER_CASTERKIT = "CasterKit"
 BINDING_NAME_CASTERKIT_AOE = "Toggle AoE mode"

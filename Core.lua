@@ -14,6 +14,13 @@ RoA.modules = {}
 ---------------------------------------------------------------------------
 local charDefaults = {
 	next = { enabled = true },  -- the next step in one line (NextStep.lua, mover "next")
+	flights = {                 -- Flights.lua
+		enabled = true,
+		panel = true,       -- times and prices beside the flight map
+		bar = true,         -- countdown to the landing (mover "flight")
+		mapPins = true,     -- known and unknown flight paths on the world map
+		newNearby = true,   -- one line when a zone has a flight path you don't know
+	},
 	nav = {
 		enabled = true,
 		followQuests = true, -- smart quest route (QuestPlan) after the own stops

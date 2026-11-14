@@ -24,6 +24,7 @@ Nav.lua
 Quests.lua
 Pickup.lua
 NextStep.lua
+Flights.lua
 Map.lua
 TrailsMap.lua
 API.lua
